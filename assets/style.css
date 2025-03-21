@@ -1,0 +1,137 @@
+/*css pour transformer un checklist en bouton  power bi*/
+/* Masquer les cases à cocher */
+#checklist input[type="checkbox"] {
+    display: none;
+}
+
+/* Style par défaut pour les labels */
+#checklist label {
+    background-color: lightblue; /* Couleur de fond par défaut */
+    color: black; /* Couleur du texte par défaut */
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Couleur persistante lorsqu'un élément est sélectionné */
+#checklist label.selected {
+    background-color: #005a9e; /* Couleur de fond pour les éléments sélectionnés */
+    color: white; /* Couleur du texte pour les éléments sélectionnés */
+}
+
+/* Couleur temporaire au survol */
+#checklist label:hover {
+    background-color: #005a9e; /* Couleur de fond au survol */
+    color: white; /* Couleur du texte au survol */
+}
+
+/*css pour changer la couleur de fond d'un date pickerrange*/
+
+/* Modifier la couleur de fond des jours sélectionnés */
+.CalendarDay__selected {
+    background-color: #144483 !important ;  /* Remplacez #ff4500 par votre couleur */
+    border:   #144483!important;      
+}
+
+/* .CalendarDay__selected:hover { */
+    /* background-color: #144483 !important ;  Remplacez #ff4500 par votre couleur */
+    /* color: #ffffff !important;            Couleur du texte */
+/* } */
+
+
+/* .CalendarDay__selected_span:hover {
+    background: #3584BF !important;}  */
+
+
+.CalendarDay__selected_span {
+    background: #3584BF !important; 
+}
+.CalendarDay__selected_span {
+    border:   #3584BF!important; /* Bordure de la plage */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+ h2 {
+    font-family: 'Playfair Display', sans-serif;
+}
+
+/* rh dasboard_QUALISYS_CONSULTING_****************************************************************************/
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    padding: 15px 20px;
+    justify-content: end; /* Pousse le menu à droite */
+    margin-top: auto;
+}
+
+
+
+.nav-links .nav-link {
+    color: #333 !important;
+    text-decoration: none;
+    font-weight: 500 !important;
+    position: relative;
+    transition: color 0.3s ease;
+    padding-bottom: 1rem; /* Espace pour l'underline */
+}
+
+.nav-links .nav-link:hover {
+    color: #007BFF !important;    
+}
+
+/* Soulignement uniquement pour le lien actif */
+.nav-links .nav-link.active::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px !important;
+    background: #007BFF !important;
+    bottom: 0px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-links .nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-links .nav-link.active::after {
+    width: 100%;
+}
+
+
+
+
+/* Conteneur du bouton hamburger */
+.hamburger {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.sidebar, .main-content {
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
