@@ -46,7 +46,7 @@ layout = html.Div([
             ]),style={'height': 'calc(100vh - 80px)','width': '16.67%', 'top': '80px','position':'fixed','display': 'flex',
             'flexDirection': 'column',
             
-            'justifyContent': 'center'},id="sidebar",width=2,className='bg-secondary '),
+            'justifyContent': 'center','backgroundColor':'#A5D8DD'},id="sidebar",width=2),
             dbc.Col(
             html.Div([
             dbc.Row([

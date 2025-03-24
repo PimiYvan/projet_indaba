@@ -24,9 +24,8 @@ navbar = dbc.Navbar(
         dcc.Location(id="url", refresh=True),  # Ajout ici pour gérer la redirection
         dbc.Col(
             html.Div([
-                html.Img(src="assets/img/logo_qualisys.jpg", height="80px", width="100px", className="logo"),
-                html.Img(src="assets/img/menu.svg", id="menu-btn", className="hamburger") 
-            ], className="d-flex align-items-center"),
+                html.H3('CRIMSON UNITY'),
+            ], className=""),
             width=2
         ),
         dbc.Col(
@@ -136,20 +135,27 @@ def pie_sexe(dropdown_groupe=None, sexe_check=None, type_check=None):
 
     sexe_counts = filtered_data['Sexe'].value_counts().reset_index()
     sexe_counts.columns = ['Sexe', 'Nombre']
+    
+
 
     fig = px.pie(sexe_counts, 
                  values='Nombre', 
                  names='Sexe', 
-                 title='Distribution des donneurs par sexe',
-                 color_discrete_sequence=px.colors.qualitative.Set1,
+                 color='Sexe',
+                 color_discrete_map={'M':'#0091D5','F':'#EA6A47'},
                  hole=0.3)
     
     fig.update_traces(textposition='inside', textinfo='percent+label')
     fig.update_layout(
         autosize=True,
-        title_font=dict(size=13, color='black', family='Arial'),
-       
-        margin=dict(l=0, r=0, t=30, b=0)  # Supprime les marges inutiles
+        title=dict(
+        text='Distribution des donneurs par sexe',
+        font=dict(size=13, color='black', family='Arial'),
+        
+        
+    ), 
+    
+    margin=dict(l=0, r=0, t=30, b=0)  # Supprime les marges inutiles
         )
     return fig
 
@@ -173,15 +179,21 @@ def pie_distribution(dropdown_groupe=None, sexe_check=None, type_check=None):
     if type_check:        
         filtered_data = filtered_data[filtered_data["Type_donation"].isin(type_check)]
 
-    filtered_data['Kell Status'] = filtered_data["Phenotype"].str.contains(r'\+kell', na=False).map({True: 'Kell+', False: 'Kell-'}) 
+    filtered_data['Kell Status'] = filtered_data["Phenotype"].str.contains(r'\+kell', na=False).map({True: 'Kell+', False: 'Kell-'})
+    
     kell_counts= filtered_data['Kell Status'].value_counts().reset_index()
     kell_counts.columns = ['Kell Status', 'Nombre']
+ 
     
     fig = px.pie(kell_counts, 
                 values='Nombre', 
                 names='Kell Status', 
                 title='Distribution des donneurs par statut Kell',
-                color_discrete_sequence=px.colors.sequential.Plasma_r)
+                color='Kell Status',
+                color_discrete_map={  # Utilisation correcte de la carte des couleurs
+               'Kell+': '#0091D5',  # Bleu
+               'Kell-': '#EA6A47'   # Rouge-orange
+    })
     
     fig.update_traces(textposition='inside', textinfo='percent+label')
     fig.update_layout(
@@ -220,9 +232,10 @@ def bar_age(dropdown_groupe=None, sexe_check=None, type_check=None):
                 x='Type_donation', 
                 y="Age", 
                 color='Sexe',
+                color_discrete_map={'M':'#0091D5', 'F':'#EA6A47'},
                 title='Âge moyen par type de donation et sexe',
                 barmode='group',
-                color_discrete_map={'M': 'blue', 'F': 'pink'})
+                )
     
     fig.update_layout(
         legend_title='Sexe',
@@ -273,7 +286,7 @@ def bar_groupe(dropdown_groupe=None, sexe_check=None, type_check=None):
              color='Rhesus',
              title='Distribution par groupe sanguin et rhésus',
              barmode='group',
-             color_discrete_map={'Positif': '#FF4C4C', 'Négatif': '#4C72FF'})
+             color_discrete_map={'Positif': '#0091D5', 'Négatif': '#EA6A47'})
     fig.update_layout(
         xaxis_title='Groupe sanguin ABO',
         yaxis_title='Nombre de donneurs',
@@ -290,6 +303,7 @@ def bar_groupe(dropdown_groupe=None, sexe_check=None, type_check=None):
         title_text=""
         )
     )
+    print(fig)
     return fig
 
         
@@ -336,7 +350,7 @@ def pyramide(dropdown_groupe=None, sexe_check=None, type_check=None):
             x=age_sex_counts['F'],
             name='Femmes',
             orientation='h',
-            marker_color='pink'
+            marker_color='#EA6A47'
         ))
     
     # Ajouter les barres pour les hommes (M)
@@ -346,7 +360,7 @@ def pyramide(dropdown_groupe=None, sexe_check=None, type_check=None):
             x=age_sex_counts['M'],
             name='Hommes',
             orientation='h',
-            marker_color='blue'
+            marker_color='#0091D5'
         ))
     
     # Mise en page
@@ -407,7 +421,7 @@ def bar_don(dropdown_groupe=None, sexe_check=None, type_check=None):
                 color='Type_donation',
                 title='Types de donation par groupe sanguin',
                 barmode='stack',
-                color_discrete_sequence=px.colors.qualitative.Pastel)
+                color_discrete_map={'B':'#0091D5','F':'#EA6A47'})
     
     fig.update_layout(
         xaxis_title='Groupe_Sanguin',
@@ -466,7 +480,8 @@ def bar_phenotype(dropdown_groupe=None, sexe_check=None, type_check=None):
     fig = go.Figure(go.Bar(
     x=data_phenotype['Nombre'],
     y=data_phenotype['Phenotype'],
-    orientation='h'
+    orientation='h',
+    marker=dict(color='#0091D5') 
     ))
     
     fig.update_layout(
@@ -512,7 +527,8 @@ def pie_eligible(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None
     fig = px.pie(filtered_data, 
                  names='ÉLIGIBILITÉ AU DON.', 
                  title='Distribution des éligibilités ',
-                #  color_discrete_sequence=px.colors.qualitative.Set3
+                 color='ÉLIGIBILITÉ AU DON.',
+                 color_discrete_map={'Éligible':'#0091D5','temporaire':'#EA6A47','Non Éligible':'#A5D8DD'}
                 )
     
     fig.update_traces(textposition='inside', textinfo='percent')
@@ -547,7 +563,8 @@ def pie_genre(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None, g
     if genre_check:        
         filtered_data = filtered_data[filtered_data["Genre"].isin(genre_check)]
 
-    fig = px.pie(filtered_data, names="Genre", title="Répartition des donneurs par genre")
+    fig = px.pie(filtered_data, names="Genre",color='Genre',title="Répartition des donneurs par genre",
+                 color_discrete_map={'homme':'#0091D5','femme':'#EA6A47'})
     
     fig.update_traces(textposition='inside', textinfo='percent')
     fig.update_layout(
@@ -593,7 +610,8 @@ def bar_elig(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None, ge
                  color='ÉLIGIBILITÉ AU DON.',
                  title='Distribution des donneurs par genre et éligibilité',
                  barmode='group',
-                 color_discrete_sequence=px.colors.qualitative.Safe)
+                 color_discrete_map={'Éligible':'#0091D5','temporaire':'#EA6A47','Non Éligible':'#A5D8DD'}
+                 )
     
     fig.update_layout(
         xaxis_title='Genre',
@@ -646,7 +664,7 @@ def bar_matri(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None, g
                 color='Situation Matrimoniale SM',
                 title='Répartition des donneurs par niveau d\'étude et situation matrimoniale',
                 barmode='stack',
-                color_discrete_sequence=px.colors.qualitative.Pastel)
+                color_discrete_map={'Célibataire':'#0091D5','Marié (e)':'#EA6A47','veuf (veuve)':'#A5D8DD','Divorcé(e)':'#1C4E80'})
     
     fig.update_layout(
         autosize=True,
@@ -696,7 +714,8 @@ def bar_edu(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None, gen
 
     df_etud=filtered_data.groupby(["Niveau d'etude",'ÉLIGIBILITÉ AU DON.']).size().reset_index(name='Nombre')
     
-    fig = px.bar(df_etud, x="Niveau d'etude",y='Nombre',color="ÉLIGIBILITÉ AU DON.", title="Éligibilité au don selon le niveau d'étude")
+    fig = px.bar(df_etud, x="Niveau d'etude",y='Nombre',color="ÉLIGIBILITÉ AU DON.", title="Éligibilité au don selon le niveau d'étude",
+                 color_discrete_map={'Éligible':'#0091D5','temporaire':'#EA6A47','Non Éligible':'#A5D8DD'})
     fig.update_layout(
         autosize=True,
         title_font=dict(size=13, color='black', family='Arial'),
@@ -752,7 +771,7 @@ def bar_tranche(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None,
 
     df_age_elig = filtered_data.groupby(['tranche_age','ÉLIGIBILITÉ AU DON.']).size().reset_index(name='Nombre')
     fig = px.bar(df_age_elig, x="tranche_age", y="Nombre", color='ÉLIGIBILITÉ AU DON.',
-             height=400,
+             color_discrete_map={'Éligible':'#0091D5','temporaire':'#EA6A47','Non Éligible':'#A5D8DD'},
              title="Répartition de l'âge selon l'éligibilité")
     fig.update_layout(
         autosize=True,
@@ -816,7 +835,11 @@ def map(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None, genre_c
     featureidkey="properties.NAME_3",
     locations="Arrondissement de résidence",
     color="Nombre",
-    color_continuous_scale="Viridis",
+      color_continuous_scale=[  
+        (0.0, "#A5D8DD"),  
+        (0.5, "#0091D5"),  
+        (1.0, "#1C4E80")   
+    ],
     mapbox_style="open-street-map",
     center={"lat": 4.06, "lon": 9.71},
     zoom=9,
@@ -842,5 +865,5 @@ def map(dropdown_eligible=None,dropdown_matrimoine=None, don_check=None, genre_c
           
 # Lancer l'application
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 

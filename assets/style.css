@@ -120,34 +120,14 @@
 }
 
 
-/* Pour les checkboxes cochées */
-/* .custom-checklist .rc-checkbox-input:checked ~ .rc-checkbox-label,
-.custom-checklist .rc-checkbox-checked + .rc-checkbox-label, */
-/* .custom-checklist input[type="checkbox"]:checked ~ label {
-    background-color: #007bff !important;
-    color: white !important;
-    border-radius: 4px !important;
-    padding: 2px 6px !important;
-    margin: 2px !important;
-    transition: all 0.2s ease !important;
+
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+h3{
+    font-family: 'Philosopher', sans-serif;
+    color: #0091D5;
+
 }
 
-/* Pour les checkboxes non cochées */
-/* .custom-checklist .rc-checkbox-label, */
-/* .custom-checklist label {
-    background-color: #e20c0c !important;
-    color: rgb(8, 26, 129) !important;
-    border-radius: 4px !important;
-    padding: 2px 6px !important;
-    margin: 2px !important;
-    transition: all 0.2s ease !important;
-} */
-/* Style lorsque l'option est sélectionnée */
-
-/* .custom-chip {
-    width: 100% !important;
-    justify-content: center !important;
-}  */
 
 
 
