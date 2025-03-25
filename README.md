@@ -13,6 +13,11 @@ Crimson Unity is a data analysis application that evaluates and visualizes blood
 ## acces direct sur le web
 https://projet-indaba-2.onrender.com
 
+##Apercu de l'app
+![Image 1](images_de_l_appli/cap1.png)
+![Image 2](images_de_l_appli/cap2.png)
+
+
 ## Installation Instructions
 
 1. **Clone the repository**:
