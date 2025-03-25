@@ -10,11 +10,11 @@ Crimson Unity is a data analysis application that evaluates and visualizes blood
 - Temporary eligibility status tracking
 - Candidate analysis dashboard
 
-## acces direct sur le web
+## direct web access to the application
 https://projet-indaba-2.onrender.com
 
-## Apercu de l'application
-Voici quelques apercus de l'application
+## Application overview
+Here are a few images of the application
 ![Image 1](images_de_l'appli/cap1.png)
 ![Image 2](images_de_l'appli/cap2.png)
 ![Image 3](images_de_l'appli/cap3.png)
